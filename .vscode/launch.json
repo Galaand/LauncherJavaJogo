@@ -6,6 +6,13 @@
             "name": "JanelaTeste",
             "request": "launch",
             "mainClass": "br.edu.iftm.tests.JanelaTeste",
+            "projectName": "LauncherJavaJogo_6d9f357c"
+        },
+        {
+            "type": "java",
+            "name": "JanelaTeste",
+            "request": "launch",
+            "mainClass": "br.edu.iftm.tests.JanelaTeste",
             "projectName": "LauncherJavaJogo_b73b2626"
         },
         {

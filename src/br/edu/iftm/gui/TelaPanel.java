@@ -5,6 +5,8 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -13,14 +15,13 @@ import java.awt.event.WindowStateListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-
 public class TelaPanel extends JPanel implements ActionListener{
 
     private final JPanel telas;
     private final CardLayout controleTela;
     private final JFrame janela;
     private boolean wasMax = true;
+    private boolean wasRestored;
 
     public TelaPanel(JPanel telas, JFrame janela){
         this.telas = telas;
@@ -34,7 +35,7 @@ public class TelaPanel extends JPanel implements ActionListener{
         janela.setExtendedState(JFrame.MAXIMIZED_BOTH); 
     
         setBackground(Color.decode("#202028"));
-    
+        System.out.println("after all...");
         Images closeButton = new Images("window-close.png");
         closeButton.setBounds(1890,0,36,36);
 
@@ -74,6 +75,7 @@ public class TelaPanel extends JPanel implements ActionListener{
             @Override
             public void mouseClicked (MouseEvent e){
                 janela.setExtendedState(JFrame.ICONIFIED);
+                wasRestored = true;
             }
         });
         
@@ -83,13 +85,15 @@ public class TelaPanel extends JPanel implements ActionListener{
                 int oldState = e.getOldState();
                 int newState = e.getNewState();
 
-                if ((oldState & JFrame.ICONIFIED) != 0 && (newState & JFrame.ICONIFIED) == 0) {
+                if ((oldState & JFrame.ICONIFIED) != 0 && (newState & JFrame.ICONIFIED) == 0 && wasRestored) {
                     if(wasMax){
+                        System.out.println("I was there");
                         janela.setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximiza
                         closeButton.setBounds(1890,0,36,36);
                         maximizeButton.setBounds(1850,0,36,36);
                         minimizeButton.setBounds(1810,0,36,36);
                     }else if(!wasMax){
+                        System.out.println("I was here");
                         janela.setExtendedState(JFrame.NORMAL); // Primeiro, define o estado como normal
                         janela.setSize(400, 300); // Define o tamanho da janela
                         janela.setLocationRelativeTo(null); // Reposiciona a janela no centro da tela (opcional)
@@ -100,8 +104,7 @@ public class TelaPanel extends JPanel implements ActionListener{
                 }
             }
         });
-
-
+        
         this.add(closeButton);
         this.add(maximizeButton);
         this.add(minimizeButton);
