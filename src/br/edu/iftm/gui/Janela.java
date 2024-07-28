@@ -13,7 +13,7 @@ public class Janela extends JFrame {
         JPanel telas = new JPanel(controleTela);
         
         LoginPanel loginPanel = new LoginPanel(telas, this);
-        PrincipalPanel principalPanel = new PrincipalPanel(telas,this);
+        BibliotecaPanel principalPanel = new BibliotecaPanel(telas,this);
         
         telas.add(loginPanel, "Tela Login");
         telas.add(principalPanel, "Tela Principal");

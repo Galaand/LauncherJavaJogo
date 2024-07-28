@@ -1,6 +1,5 @@
-package br.edu.iftm.gui;
+package br.edu.iftm.gui.components;
 
-import br.edu.iftm.gui.components.Images;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -35,7 +34,7 @@ public class TelaPanel extends JPanel implements ActionListener{
         janela.setExtendedState(JFrame.MAXIMIZED_BOTH); 
     
         setBackground(Color.decode("#202028"));
-        System.out.println("after all...");
+        
         Images closeButton = new Images("window-close.png");
         closeButton.setBounds(1890,0,36,36);
 
